@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<referenceContainer name="product.info.main">
+		 <block class="MST\Dream\Block\NewsList" name="mst_dream_block_3" before="product.info.sku" template="MST_Dream::maiuoc.phtml" />
+	</referenceContainer>
+</layout>

@@ -4,8 +4,7 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
 etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template" name="mst_dream_block"
- template="MST_Dream::index.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="mst_dream_block" template="MST_Dream::index.phtml" />
         </referenceContainer>
     </body>
 </page>

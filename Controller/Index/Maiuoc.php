@@ -4,7 +4,8 @@ namespace MST\Dream\Controller\Index;
  
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
- use MST\Dream\Model\NewsFactory;
+use Magento\Framework\View\Result\PageFactory;
+use MST\Dream\Model\NewsFactory;
  
 class Maiuoc extends Action
 {
@@ -19,10 +20,12 @@ class Maiuoc extends Action
      */
     public function __construct(
         Context $context,
-        NewsFactory $modelNewsFactory
+        NewsFactory $modelNewsFactory,
+		PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
         $this->_modelNewsFactory = $modelNewsFactory;
+		$this->resultPageFactory = $resultPageFactory;
     }
  
     public function execute()
@@ -32,8 +35,8 @@ class Maiuoc extends Action
          * for your model at var/generaton folder and we can get your
          * model by this way
          */
-        $newsModel = $this->_modelNewsFactory->create();
- 
+       /*  $newsModel = $this->_modelNewsFactory->create();
+		
         // Load the item with ID is 1
         $item = $newsModel->load(1);
 		echo "<pre>";
@@ -52,6 +55,28 @@ class Maiuoc extends Action
 			'created_at' => date('Y-m-d H:i:s',time())
 			);
 		$newsModel->setData($dataSave)->save();
-		echo 'ok';
+		echo 'ok'; */
+		$resultPageFactory = $this->resultPageFactory->create();
+ 
+        // Add page title
+        $resultPageFactory->getConfig()->getTitle()->set(__('Example module'));
+ 
+        // Add breadcrumb
+        /** @var \Magento\Theme\Block\Html\Breadcrumbs */
+        $breadcrumbs = $resultPageFactory->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbs->addCrumb('home',
+            [
+                'label' => __('Home'),
+                'title' => __('Home'),
+                'link' => $this->_url->getUrl('')
+            ]
+        );
+        $breadcrumbs->addCrumb('tutorial_example',
+            [
+                'label' => __('Example'),
+                'title' => __('Example')
+            ]
+        );
+		return $resultPageFactory;
     }
 }
