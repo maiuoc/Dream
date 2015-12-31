@@ -6,6 +6,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use MST\Dream\Model\NewsFactory;
+use MST\Dream\Helper\Data;
  
 class Maiuoc extends Action
 {
@@ -13,7 +14,7 @@ class Maiuoc extends Action
      * @var \Tutorial\SimpleNews\Model\NewsFactory
      */
     protected $_modelNewsFactory;
- 
+	protected $_dreamHelper;
     /**
      * @param Context $context
      * @param NewsFactory $modelNewsFactory
@@ -21,11 +22,13 @@ class Maiuoc extends Action
     public function __construct(
         Context $context,
         NewsFactory $modelNewsFactory,
-		PageFactory $resultPageFactory
+		PageFactory $resultPageFactory,
+		Data $dataHelper
     ) {
         parent::__construct($context);
         $this->_modelNewsFactory = $modelNewsFactory;
 		$this->resultPageFactory = $resultPageFactory;
+		$this->_dreamHelper = $dataHelper;
     }
  
     public function execute()
@@ -59,7 +62,8 @@ class Maiuoc extends Action
 		$resultPageFactory = $this->resultPageFactory->create();
  
         // Add page title
-        $resultPageFactory->getConfig()->getTitle()->set(__('Example module'));
+		$titlePage = $this->_dreamHelper->getHeadTitle();
+        $resultPageFactory->getConfig()->getTitle()->set(__($titlePage));
  
         // Add breadcrumb
         /** @var \Magento\Theme\Block\Html\Breadcrumbs */

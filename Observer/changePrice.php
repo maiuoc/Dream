@@ -1,10 +1,12 @@
 <?php
-namespace MST\Dream\Model;
-class Observer
+namespace MST\Dream\Observer;
+use Magento\Framework\Event\Observer as EventObserver;
+use Magento\Framework\Event\ObserverInterface;
+class ChangePrice implements ObserverInterface
 {
-    public function invoke(\Magento\Framework\Event\Observer $observer)
+    public function execute(EventObserver $observer)
     {
-        $item = $observer->getEvent()->getData('quote_item');
+		$item = $observer->getEvent()->getData('quote_item');
         $product = $observer->getEvent()->getData('product');
         $item = ($item->getParentItem() ? $item->getParentItem() : $item );
         // Load the custom price
@@ -14,5 +16,6 @@ class Observer
         $item->setOriginalCustomPrice($price);
         // Enable super mode on the product.
         $item->getProduct()->setIsSuperMode(true);
+        return $this;
     }
 }

@@ -5,14 +5,14 @@
       if ($newsCollection->getSize() > 0) :
    ?>
       <div class="toolbar top">
-         <?php echo $block->getPagerHtml(); ?>
+         <?php //echo $block->getPagerHtml(); ?>
       </div>
  
       <ul>
          <?php foreach ($newsCollection as $news) : ?>
             <li>
                <div class="simplenews-list">
-                  <a class="news-title" href="<?php echo $this->getUrl('news/index/view',
+                  <a class="news-title" href="<?php echo $this->getUrl('dream/index/view',
  ['id' => $news->getId()]) ?>"><?php echo $news->getTitle() ?></a>
                   <div class="simplenews-list-content">
                      <?php echo $news->getSummary() ?>
