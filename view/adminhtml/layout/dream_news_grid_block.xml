@@ -1,10 +1,8 @@
 <?xml version="1.0"?>
- 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
       <referenceBlock name="mst_dream_news.grid.container">
-         <block class="Magento\Backend\Block\Widget\Grid" name="mst_dream_news.grid"
-             as="grid">
+         <block class="Magento\Backend\Block\Widget\Grid" name="mst_dream_news.grid" as="grid">
              <arguments>
                  <argument name="id" xsi:type="string">newsGrid</argument>
                  <argument name="dataSource" xsi:type="object">MST\Dream\Model\Resource\News\Collection</argument>
@@ -66,8 +64,18 @@
                             <argument name="options" xsi:type="options" model="MST\Dream\Model\System\Config\Status"/>
                         </arguments>
                     </block>
-                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="action" 
-                        acl="MST_Dream::manage_news">
+					 <block class="Magento\Backend\Block\Widget\Grid\Column" as="status_2" >
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Status</argument>
+                            <argument name="index" xsi:type="string">status</argument>
+                            <!-- <argument name="type" xsi:type="string">options</argument>
+							
+                            <argument name="options" xsi:type="options" model="MST\Dream\Model\System\Config\Status"/> -->
+							<argument name="renderer" xsi:type="string">MST\Dream\Block\Adminhtml\Grid\Renderer\Customcolumn</argument>
+          
+						</arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="action" acl="MST_Dream::manage_news">
                         <arguments>
                             <argument name="id" xsi:type="string">action</argument>
                             <argument name="header" xsi:type="string" translate="true">Action</argument>

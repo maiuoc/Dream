@@ -109,20 +109,7 @@ class Info extends Generic implements TabInterface
                 'config'    => $wysiwygConfig
             ]
         );
-		$field = $fieldset->addField(
-		   'customfield',
-		   'text',
-		   [
-			   'name' 	=> 'customfield',
-			   'title'	=> __('Custom Field'),
-		   ]
-		);
  
-		$renderer = $this->getLayout()->createBlock(
-		   'MST\Dream\Block\Adminhtml\Form\Renderer\Customfield'
-		);
- 
-$field->setRenderer($renderer);
         $data = $model->getData();
         $form->setValues($data);
         $this->setForm($form);
