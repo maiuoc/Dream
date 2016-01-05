@@ -11,10 +11,6 @@
             <block class="MST\Dream\Block\Adminhtml\Product\Edit\Tab" name="product.reviews.maiuoc">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Dream</argument>
-                  <!--  <argument name="url" xsi:type="url" path="review/product_reviews/grid">
-                        <param name="_current">1</param>
-                    </argument>
-                    <argument name="class" xsi:type="string">ajax</argument> -->
                     <argument name="group_code" xsi:type="string">advanced</argument>
                 </arguments>
             </block>

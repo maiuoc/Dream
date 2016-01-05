@@ -33,7 +33,36 @@ class UpgradeSchema implements  UpgradeSchemaInterface
 
             }
         }
-
+		if (version_compare($context->getVersion(), '1.0.4') < 0) {
+			$tableNameCat = $setup->getTable('dream_simplenews_category');
+			if ($setup->getConnection()->isTableExists($tableNameCat) != true) {
+				$tableCat = $setup->getConnection()
+					->newTable($tableNameCat)
+					->addColumn(
+						'cait_id',
+						\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+						null,
+						[
+							'identity' => true,
+							'unsigned' => true,
+							'nullable' => false,
+							'primary' => true
+						],
+						'ID'
+					)
+					->addColumn(
+						'title',
+						\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+						null,
+						['nullable' => false, 'default' => ''],
+						'Title'
+					)
+					->setComment('News Table')
+					->setOption('type', 'InnoDB')
+					->setOption('charset', 'utf8');
+				$setup->getConnection()->createTable($tableCat);
+			}
+		}
         $setup->endSetup();
     }
 }
