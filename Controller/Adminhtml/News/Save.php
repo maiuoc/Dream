@@ -3,7 +3,6 @@
 namespace MST\Dream\Controller\Adminhtml\News;
  
 use MST\Dream\Controller\Adminhtml\News;
- 
 class Save extends News
 {
    /**
@@ -20,8 +19,8 @@ class Save extends News
             $newsModel->load($newsId);
          }
         $formData = $this->getRequest()->getParam('news');
-         $newsModel->setData($formData);
-         
+		$formData['imagename'] = $this->_uploadImages->uploadFileAndGetName('imagename', $this->_imageModel->getBaseDir(), $formData);
+        $newsModel->setData($formData);
          try {
             // Save news
             $newsModel->save();

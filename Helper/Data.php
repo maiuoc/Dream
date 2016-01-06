@@ -6,7 +6,6 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
- 
 class Data extends AbstractHelper
 {
    const XML_PATH_ENABLED      = 'dream/general/enable_in_frontend';
@@ -25,7 +24,8 @@ class Data extends AbstractHelper
     public function __construct(
        Context $context,
        ScopeConfigInterface $scopeConfig
-    ) {
+    ) 
+	{
        parent::__construct($context);
        $this->_scopeConfig = $scopeConfig;
     }

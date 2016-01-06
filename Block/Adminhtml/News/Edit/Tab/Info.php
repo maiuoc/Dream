@@ -109,6 +109,15 @@ class Info extends Generic implements TabInterface
                 'config'    => $wysiwygConfig
             ]
         );
+		$fieldset->addField(
+			'imagename',
+			'image',
+			array(
+				'name' => 'imagename',
+				'label' => __('Image'),
+				'title' => __('Image')
+			)
+		);
 		$field = $fieldset->addField(
 		   'customfield',
 		   'text',
@@ -122,8 +131,12 @@ class Info extends Generic implements TabInterface
 		   'MST\Dream\Block\Adminhtml\Form\Renderer\Customfield'
 		);
  
-$field->setRenderer($renderer);
+		$field->setRenderer($renderer);
         $data = $model->getData();
+		if(isset($data['imagename']) && $data['imagename'] != '')
+		{
+			$data['imagename'] = 'dream/image/'.$data['imagename'];
+		}
         $form->setValues($data);
         $this->setForm($form);
  
