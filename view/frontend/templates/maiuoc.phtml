@@ -32,6 +32,16 @@
    <?php else : ?>
       <p><?php echo __('Have no article!') ?></p>
    <?php endif; ?>
-   <input type="text" name="test_uoc_mai" />
+   <input id="mai-uoc-kaka" type="text" name="test_uoc_mai" />
    Mai uoc zxcvzxvxcbxc
 </div>
+<script type="text/javascript">
+    require(['jquery'],function($){
+		$(document).ready(function(){
+			$('#mai-uoc-kaka').click(function()
+			{
+				alert('User Jquery Lebraly');
+			})
+		})
+    });
+</script>

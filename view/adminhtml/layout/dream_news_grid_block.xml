@@ -14,7 +14,7 @@
                      <param name="_current">1</param>
                  </argument>
              </arguments>
-                <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="tutorial_simplenews_news.grid.massaction" as="grid.massaction">
+                <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="mst_dream_news.grid.massaction" as="grid.massaction">
                     <arguments>
                         <argument name="massaction_id_field" xsi:type="string">id</argument>
                         <argument name="form_field_name" xsi:type="string">news</argument>
@@ -27,7 +27,7 @@
                         </argument>
                     </arguments>
                 </block>
-                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="tutorial_simplenews_news.grid.columnSet" as="grid.columnSet">
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="mst_dream_news.grid.columnSet" as="grid.columnSet">
                     <arguments>
                         <argument name="rowUrl" xsi:type="array">
                             <item name="path" xsi:type="string">*/*/edit</item>

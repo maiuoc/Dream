@@ -9,7 +9,7 @@ use Magento\Catalog\Model\Product;
 class NewsList extends Template
 {
    /**
-    * @var \Tutorial\SimpleNews\Model\NewsFactory
+    * @var \MST\Dream\Model\NewsFactory
     */
    protected $_newsFactory;
 	protected $_productModel;
@@ -64,7 +64,7 @@ class NewsList extends Template
 		$productModel = $this->_productModel;
 		$tableDream = 'dream_simplenews';
 		$collection = $productModel->getCollection()
-			->addAttributeToFilter('name','Test Product');
+			->addAttributeToFilter('name','Radisson Colonia');
 		$collection->getSelect()->joinLeft(array('table_dream'=>$tableDream),'e.entity_id = table_dream.id',array('dream_title'=>'title'));
 		if(count($collection))
 		{
