@@ -1,5 +1,6 @@
 <div class="simplenews">
    <?php
+		echo get_class($block);
 		$block->getDreamProduct();
       $newsCollection = $block->getCollection();
       if ($newsCollection->getSize() > 0) :
@@ -36,12 +37,12 @@
    Mai uoc zxcvzxvxcbxc
 </div>
 <script type="text/javascript">
-    require(['jquery'],function($){
+  /*   require(['jquery'],function($){
 		$(document).ready(function(){
 			$('#mai-uoc-kaka').click(function()
 			{
 				alert('User Jquery Lebraly');
 			})
 		})
-    });
+    }); */
 </script>
