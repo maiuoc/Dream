@@ -33,16 +33,32 @@
    <?php else : ?>
       <p><?php echo __('Have no article!') ?></p>
    <?php endif; ?>
+   <!-- test show block-->
+   <?php $a = $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('MST_Dream::ajax.phtml')->toHtml(); 
+		echo $a;
+   ?>
    <input id="mai-uoc-kaka" type="text" name="test_uoc_mai" />
-   Mai uoc zxcvzxvxcbxc
+	<div id="mai-uoc-content-kaka"></div>
 </div>
 <script type="text/javascript">
-  /*   require(['jquery'],function($){
-		$(document).ready(function(){
-			$('#mai-uoc-kaka').click(function()
-			{
-				alert('User Jquery Lebraly');
-			})
+    require(['jquery'],function($){
+		$('#mai-uoc-kaka').click(function(){
+			console.log("I was clicked");
+			var urlBooking = 'http://127.0.0.1/mage21/dream/index/mai'
+			$.ajax({
+				url : urlBooking,
+				dataType : 'json',
+				type : 'POST',
+				data : {},
+				success : function(res)
+				{
+					$('#mai-uoc-content-kaka').html(res.maiuoc);
+				},
+				error : function()
+				{
+					console.log('error');
+				}
+			});
 		})
-    }); */
+    }); 
 </script>

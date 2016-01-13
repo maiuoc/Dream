@@ -73,6 +73,8 @@ class NewsList extends Template
 				echo "This is {$collect->getId()} {$collect->getDreamTitle()}";
 			}
 		}
+		$dreamProduct = $productModel->load(7);
+		echo "Custom type Id {$dreamProduct->getTypeId()}";
 	}
  
    /**

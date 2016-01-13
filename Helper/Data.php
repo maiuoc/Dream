@@ -6,6 +6,7 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Backend\Helper\Data as BackendHelper;
 class Data extends AbstractHelper
 {
    const XML_PATH_ENABLED      = 'dream/general/enable_in_frontend';
@@ -16,18 +17,20 @@ class Data extends AbstractHelper
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $_scopeConfig;
- 
+	protected $_backendHelper;
     /**
      * @param Context $context
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
        Context $context,
-       ScopeConfigInterface $scopeConfig
+       ScopeConfigInterface $scopeConfig,
+	   BackendHelper $backendHelper
     ) 
 	{
        parent::__construct($context);
        $this->_scopeConfig = $scopeConfig;
+       $this->_backendHelper = $backendHelper;
     }
  
    /**
@@ -67,6 +70,11 @@ class Data extends AbstractHelper
          self::XML_PATH_LASTEST_NEWS,
          ScopeInterface::SCOPE_STORE
       );
+   }
+   function getBookingAdminUrl($router,$param = [])
+   {
+	   
+	   return $this->_backendHelper->getUrl($router,$param);
    }
 }
  

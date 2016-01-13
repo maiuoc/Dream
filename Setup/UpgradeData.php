@@ -2,12 +2,32 @@
  
 namespace MST\Dream\Setup;
  
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
+use MST\Dream\Model\Product\Type\Dream as DreamType;
  
 class UpgradeData implements UpgradeDataInterface
 {
+	/**
+     * EAV setup factory
+     *
+     * @var EavSetupFactory
+     */
+    private $eavSetupFactory;
+
+    /**
+     * Init
+     *
+     * @param EavSetupFactory $eavSetupFactory
+     */
+    public function __construct(EavSetupFactory $eavSetupFactory)
+    {
+        $this->eavSetupFactory = $eavSetupFactory;
+    }
+
     public function upgrade(
         ModuleDataSetupInterface $setup,
         ModuleContextInterface $context
@@ -43,7 +63,31 @@ class UpgradeData implements UpgradeDataInterface
                 }
             }
         }
- 
+		if(version_compare($context->getVersion(), '1.0.5') < 0)
+		{
+			$eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+			$attributes = [
+					'cost',
+					'price',
+					'special_price',
+					'tax_class_id'
+				];
+			foreach ($attributes as $attributeCode) {
+				$relatedProductTypes = explode(
+					',',
+					$eavSetup->getAttribute(\Magento\Catalog\Model\Product::ENTITY, $attributeCode, 'apply_to')
+				);
+				if (!in_array(DreamType::TYPE_CODE, $relatedProductTypes)) {
+					$relatedProductTypes[] = DreamType::TYPE_CODE;
+					$eavSetup->updateAttribute(
+						\Magento\Catalog\Model\Product::ENTITY,
+						$attributeCode,
+						'apply_to',
+						implode(',', $relatedProductTypes)
+					);
+				}
+			}
+		}
         $setup->endSetup();
     }
 }
